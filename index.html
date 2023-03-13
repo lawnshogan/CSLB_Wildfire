@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Intro to MapView - Create a 2D map</title>
+    <title>CSLB Wildfire Report</title>
     <style>
       html,
       body,
@@ -17,16 +17,22 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.26/"></script>
     <script>
-      require(["esri/Map", "esri/views/MapView"], (Map, MapView) => {
+      require(["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"], (Map, MapView, FeatureLayer) => {
         const map = new Map({
           basemap: "topo-vector"
         });
         const view = new MapView({
-            container: "viewDiv", // Reference to the view div created in step 5
-            map: map, // Reference to the map object created before the view
-            zoom: 8, // Sets zoom level based on level of detail (LOD)
-            center: [-104.9903, 39.7392] // Sets center point of view using longitude,latitude of Denver
+          container: "viewDiv",
+          map: map,
+          zoom: 8,
+          center: [-104.9903, 39.7392]
         });
+
+        // Add feature layer to map
+        const featureLayer = new FeatureLayer({
+          url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/SLB_Surface_Ownership/FeatureServer"
+        });
+        map.add(featureLayer);
       });
     </script>
   </head>
