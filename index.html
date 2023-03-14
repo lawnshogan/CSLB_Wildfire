@@ -22,6 +22,19 @@
 // Add SLB Surface Ownership layer to map
 const slbSurface = new FeatureLayer({
   url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/SLB_Surface_Ownership/FeatureServer",
+  outFields: ["*"],
+  popupTemplate: {
+    title: "SLB Surface Ownership",
+    content: (feature) => {
+      let attributes = feature.attributes;
+      let popupContent = "<table>";
+      for (let key in attributes) {
+        popupContent += "<tr><td>" + key + "</td><td>" + attributes[key] + "</td></tr>";
+      }
+      popupContent += "</table>";
+      return popupContent;
+    }
+  },
   renderer: {
     type: "simple",
     symbol: {
@@ -34,27 +47,29 @@ const slbSurface = new FeatureLayer({
     }
   }
 });
-map.add(slbSurface);
+        map.add(slbSurface);
 
-
-// Add historic fires layer to map
-const historicFires = new FeatureLayer({
-  url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Historical_Fire_Perimeter/FeatureServer",
-  renderer: {
-    type: "simple",
-    symbol: {
-      type: "simple-fill",
-      color: [0, 0, 0, 0.5], // set fill color to black with 50% transparency
-      outline: {
-        color: [0, 0, 0, 1], // set outline color to black
-        width: 1 // set outline width to 1 pixel
-      }
-    }
-  }
-});
-map.add(historicFires);
-
-
+        // Add historic fires layer to map
+        const historicFires = new FeatureLayer({
+          url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Historical_Fire_Perimeter/FeatureServer",
+          outFields: ["*"],
+          popupTemplate: {
+            title: "Historic Fires",
+            content: "<b>Fire Name:</b>{INCIDENT} <br><b>Year of Fire:</b>{FIRE_YEAR} <br><b>Approximate Burn Acreage:</b>{GIS_ACRES} <br><b>Year:</b>{FIRE_YEAR} <br><b>Year:</b>{FIRE_YEAR} <br><b>Year:</b>{FIRE_YEAR}"
+          },
+          renderer: {
+            type: "simple",
+            symbol: {
+              type: "simple-fill",
+              color: [0, 0, 0, 0.5], // set fill color to black with 50% transparency
+              outline: {
+                color: [0, 0, 0, 1], // set outline color to black
+                width: 1 // set outline width to 1 pixel
+              }
+            }
+          }
+        });
+        map.add(historicFires);
       });
     </script>
   </head>
@@ -63,4 +78,5 @@ map.add(historicFires);
     <div id="viewDiv"></div>
   </body>
 </html>
+
 

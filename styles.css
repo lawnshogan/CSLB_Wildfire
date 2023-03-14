@@ -5,6 +5,7 @@ body,
   margin: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 header {
@@ -14,8 +15,5 @@ header {
   font-size: 24px;
   font-weight: bold;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
-
-  
-
