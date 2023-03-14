@@ -25,11 +25,11 @@
         });
         map.add(featureLayer);
 
-        // Add GeoJSON layer to map
-        const featureLayer2 = new FeatureLayer2({
+        // Add feature layer to map
+        const featureLayer2 = new FeatureLayer({
           url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Historical_Fire_Perimeter/FeatureServer"
         });
-        map.add(FeatureLayer2);
+        map.add(featureLayer2);
       });
     </script>
   </head>
