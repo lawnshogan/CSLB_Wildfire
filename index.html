@@ -16,20 +16,45 @@
           container: "viewDiv",
           map: map,
           zoom: 8,
-          center: [-104.9903, 39.7392]
+          center: [-104.9903, 39.6392]
         });
 
-        // Add SLB Surface Ownership layer to map
-        const slbSurface = new FeatureLayer({
-          url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/SLB_Surface_Ownership/FeatureServer"
-        });
-        map.add(slbSurface);
+// Add SLB Surface Ownership layer to map
+const slbSurface = new FeatureLayer({
+  url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/SLB_Surface_Ownership/FeatureServer",
+  renderer: {
+    type: "simple",
+    symbol: {
+      type: "simple-fill",
+      color: [173, 216, 230, 0.5], // set fill color to light blue with 50% transparency
+      outline: {
+        color: [0, 0, 255, 1], // set outline color to dark blue
+        width: 0.5 // set outline width to 0.5 pixels
+      }
+    }
+  }
+});
+map.add(slbSurface);
 
-        // Add historic fires layer to map
-        const historicFires = new FeatureLayer({
-          url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Historical_Fire_Perimeter/FeatureServer"
-        });
-        map.add(historicFires);
+
+// Add historic fires layer to map
+const historicFires = new FeatureLayer({
+  url: "https://services5.arcgis.com/rqsYvPKZmvSrSWbw/arcgis/rest/services/Historical_Fire_Perimeter/FeatureServer",
+  renderer: {
+    type: "simple",
+    symbol: {
+      type: "simple-fill",
+      color: [0, 0, 0, 0.5], // set fill color to black with 50% transparency
+      outline: {
+        color: [0, 0, 0, 1], // set outline color to black
+        width: 1 // set outline width to 1 pixel
+      }
+    }
+  }
+});
+map.add(historicFires);
+
+
       });
     </script>
   </head>
