@@ -25,15 +25,10 @@ const slbSurface = new FeatureLayer({
   outFields: ["*"],
   popupTemplate: {
     title: "SLB Surface Ownership",
-    content: (feature) => {
-      let attributes = feature.attributes;
-      let popupContent = "<table>";
-      for (let key in attributes) {
-        popupContent += "<tr><td>" + key + "</td><td>" + attributes[key] + "</td></tr>";
-      }
-      popupContent += "</table>";
-      return popupContent;
-    }
+    content: "<b>Asset Layer: </b>{Asset Layer} \
+    <br><b>Asset_Layer: </b>{Asset_Layer} \
+    <br><b>Netsuite FAM: </b>{Netsuite FAM} \
+    <br><b>Net_ID: </b>{Net_ID}"
   },
   renderer: {
     type: "simple",
@@ -55,7 +50,13 @@ const slbSurface = new FeatureLayer({
           outFields: ["*"],
           popupTemplate: {
             title: "Historic Fires",
-            content: "<b>Fire Name:</b>{INCIDENT} <br><b>Year of Fire:</b>{FIRE_YEAR} <br><b>Approximate Burn Acreage:</b>{GIS_ACRES} <br><b>Year:</b>{FIRE_YEAR} <br><b>Year:</b>{FIRE_YEAR} <br><b>Year:</b>{FIRE_YEAR}"
+            content: "<b>Fire Name: </b>{INCIDENT} \
+            <br><b>Year of Fire: </b>{FIRE_YEAR} \
+            <br><b>Approx. Burn Acreage: </b>{GIS_ACRES} \
+            <br><b>Agency: </b>{AGENCY} \
+            <br><b>Incident Type: </b>{FEATURE_CA} \
+            <br><b>Comments: </b>{COMMENTS} \
+            <br><b>Source: </b>{SOURCE}"
           },
           renderer: {
             type: "simple",
